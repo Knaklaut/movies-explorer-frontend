@@ -1,0 +1,131 @@
+.menu {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, .3);
+  transition: all .3s ease-in-out;
+}
+  
+.menu__content {
+  width: 100%;
+  max-width: 520px;
+  padding: 144px 10px 46px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  background-color: #FAFAFA;
+  transition: all .3s ease-in-out;
+}
+  
+.menu_opened {
+  visibility: visible;
+  opacity: 1;
+}
+  
+.menu__content,
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+  
+.menu__link {
+  margin: 0;
+  padding-bottom: 7px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.21;
+  text-decoration: none;
+  color: #000;
+  transition: opacity .3s ease-in-out;
+}
+  
+.menu__link_selected {
+  border-bottom: 2px solid #000;
+}
+  
+.menu__profile-link {
+  margin: auto 0;
+  padding: 8px 12px 8px 31px;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  text-decoration: none;
+  color: #000;
+  background-image: url(../../images/ico-profile.svg);
+  background-repeat: no-repeat;
+  background-position: 12px 50%;
+  background-size: 12px 14px;
+  background-color: transparent;
+  border: 2px solid #AAA;
+  border-radius: 50px;
+  transition: opacity .3s ease-in-out;
+}
+  
+.menu__link:hover,
+.menu__profile-link:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+  
+@media screen and (min-width: 768px) {
+  .menu__content {
+    padding: 159px 90px 90px;
+  }
+}
+  
+@media screen and (min-width: 1280px) {
+  .menu {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    background-color: transparent;
+  }
+  
+  .menu__content {
+    max-width: 100%;
+    height: auto;
+    padding: 0;
+    position: static;
+  }
+  
+  .menu__content,
+  .menu__links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .menu__content {
+    justify-content: space-between;
+  }
+  
+  .menu__links {
+    gap: 16px;
+  }
+  
+  .menu__link {
+    padding-bottom: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.39;
+  }
+  
+  .menu__link_type_main {
+    display: none;
+  }
+}

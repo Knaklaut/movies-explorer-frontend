@@ -1,0 +1,55 @@
+.menu {
+  padding: 0;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: none;
+  border: none;
+  position: fixed;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+  
+.menu:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.menu__type_open {
+  width: 44px;
+  height: 44px;
+  top: 15px;
+  right: 16px;
+  background-image: url('../../images/ico-menu.svg');
+}
+
+.menu__type_close {
+  width: 22px;
+  height: 22px;
+  top: 13.44px;
+  right: 13.44px;
+  background-image: url('../../images/ico-close.svg');
+}
+
+.menu__type_hidden {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .menu__type_open {
+    top: 15px;
+    right: 30px;
+  }
+
+  .menu__type_close {
+    top: 22.44px;
+    right: 22.44px;
+  }
+}
+  
+@media screen and (min-width: 1280px) {
+  .menu {
+    display: none;
+  }
+}
+  
