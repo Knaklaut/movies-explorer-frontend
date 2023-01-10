@@ -5,7 +5,7 @@ import './FormTemplate.css';
 import logo from '../../images/logo.svg';
 
 const FormTemplate = (props) => {
-  const { children, onSubmit, greeting, buttonCaption, formTitle, text, link, linkCaption } = props;
+  const { children, onSubmit, greeting, formTitle, text, link, buttonCaption, linkCaption } = props;
 
   return (
     <section className="form">

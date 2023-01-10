@@ -28,7 +28,7 @@ const Profile = () => {
             <input onChange={handleChangeEmail} className="profile__input" value={email} type='email' name='email' id='email' minLength='2' maxLength='30' required />
           </label>
             <button className="profile__button profile__button_type_edit" type='submit'>Редактировать</button>
-            <button className="profile__button profile__button_type_exit" type='button'><Link to='/' className="profile__link app__link">Выйти из аккаунта</Link></button>
+            <button className="profile__button profile__button_type_exit" type='button'><Link to='/' className="profile__link">Выйти из аккаунта</Link></button>
         </form>
       </div>  
     </section>

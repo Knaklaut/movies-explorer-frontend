@@ -89,6 +89,10 @@
     font-size: 12px;
     line-height: 1.5;
   }
+
+  .techs__list {
+    max-width: 668px;
+  }
 }
   
 @media screen and (min-width: 1280px) {

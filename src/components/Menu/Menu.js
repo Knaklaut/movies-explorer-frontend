@@ -4,9 +4,9 @@ import './Menu.css';
 
 const Menu = ({ loggedIn, isOpen, setIsOpen }) => {
   const classNames = cn("menu", {
-    "menu__type_open": !isOpen, 
-    "menu__type_close": isOpen,
-    "menu__type_hidden": !loggedIn,
+    "menu_type_open": !isOpen, 
+    "menu_type_close": isOpen,
+    "menu_type_hidden": !loggedIn,
   });
   const handleActivateMenu = () => setIsOpen(!isOpen);
 

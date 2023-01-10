@@ -83,7 +83,7 @@
   
 @media screen and (min-width: 768px) {
   .form {
-    padding: 22vh 0;
+    padding-top: 22vh;
   }
   
   .form__content {
