@@ -1,0 +1,16 @@
+.app {
+  min-height: 100vh;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  color: #000;
+  background-color: #FFF;
+}
+
+
+  

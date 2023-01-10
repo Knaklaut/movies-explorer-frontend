@@ -1,0 +1,96 @@
+.movie-card {
+  width: 300px;
+  height: object-fit;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 30px 0 rgba(0, 0, 0, .08);
+  border-radius: 6px;
+}
+  
+.movie-card__img {
+  width: 300px;
+  display: block;
+  object-position: center;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  border-radius: 6px 6px 0 0;
+  transition: opacity .3s ease-in-out;
+}
+
+.movie-card__img:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+  
+.movie-card__info {
+  padding: 7px 14px 14px 14px;
+}
+  
+.movie-card__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+  
+.movie-card__title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.21;
+}
+  
+.movie-card__button {
+  width: 30px;
+  height: 30px;
+  display: block;
+  background-image: url(../../images/ico-heart.svg);
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  transition: opacity .3s ease-in-out;
+}
+  
+.movie-card__button_save {
+  background-image: url('../../images/ico-heart-active.svg');
+}
+  
+.movie-card__button_delete {
+  background-image: url('../../images/ico-cross.svg');
+}
+  
+.movie-card__button:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+  
+.movie-card__duration {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #A0A0A0;
+}
+
+@media screen and (min-width: 768px){
+  .movie-card {
+    width: 339px;
+  }
+
+  .movie-card__img {
+    width: 339px;
+  }
+}
+
+@media screen and (min-width: 1280px){
+  .movie-card {
+    width: 364px;
+  }
+
+  .movie-card__img {
+    width: 364px;
+  }
+}
