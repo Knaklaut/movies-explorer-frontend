@@ -2,6 +2,7 @@
   min-height: 74px;
   padding: 18px 0;
   box-sizing: border-box;
+  position: relative;
 }
   
 .header__landing {

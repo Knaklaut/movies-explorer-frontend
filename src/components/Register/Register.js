@@ -1,26 +1,31 @@
+import { useFormWithValidation } from '../../utils/utils';
+import { validationScheme } from '../../utils/constants';
 import FormTemplate from '../FormTemplate/FormTemplate';
 
-const Register = () => {
-  const handleSubmit = (evt) => {
+const Register = ({ handleRegister, isLoading }) => {
+  const { handleUpdateData, inputData, errors, isValid } = useFormWithValidation();
+
+  function handleSubmitData(evt) {
     evt.preventDefault();
+    handleRegister(inputData.username, inputData.email, inputData.password);
   };
 
   return (
-    <FormTemplate onSubmit={handleSubmit} formTitle='register' greeting='Добро пожаловать!' buttonCaption='Зарегистрироваться' text='Уже зарегистрированы?' linkCaption='Войти' link='signin'>
+    <FormTemplate onSubmit={handleSubmitData} isLoading={isLoading} isValid={isValid} formTitle='register' greeting='Добро пожаловать!' buttonCaption='Зарегистрироваться' text='Уже зарегистрированы?' linkCaption='Войти' link='signin'>
       <label className="form__label" htmlFor='name'>
         Имя
-        <input className="form__input" name='name' id='name' type='text' required />
-        <span className="form__err" id='email-err' />
+        <input onChange={handleUpdateData} value={inputData.username || ''} pattern={validationScheme.username.scheme} disabled={isLoading} className="form__input" name='username' id='name' type='text' minLength='2' maxLength='30' required />
+        <span className="form__error" id='name-error'>{errors.username}</span>
       </label>
       <label className="form__label" htmlFor='email'>
         E-mail
-        <input className="form__input" name='email' id='email' type='email' required />
-        <span className="form__err" id='email-err' />
+        <input onChange={handleUpdateData} value={inputData.email || ''} pattern={validationScheme.email.scheme} disabled={isLoading} className="form__input" name='email' id='email' type='email' minLength='8' maxLength='30' required />
+        <span className="form__error" id='email-error'>{errors.email}</span>
       </label>
-      <label className="form__label" htmlFor='email'>
+      <label className="form__label" htmlFor='password'>
         Пароль
-        <input className="form__input" name='password' id='password' type='password' required />
-        <span className="form__err" id='password-err' />
+        <input onChange={handleUpdateData} value={inputData.password || ''} disabled={isLoading} className="form__input" name='password' id='password' type='password' maxLength='30' required />
+        <span className="form__error" id='password-error'>{errors.password}</span>
       </label>
     </FormTemplate>
   )

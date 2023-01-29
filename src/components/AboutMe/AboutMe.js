@@ -1,5 +1,5 @@
 import './AboutMe.css';
-import photo from '../../images/photo.jpg';
+import photo from '../../images/student-photo.jpg';
 import Portfolio from '../Portfolio/Portfolio';
 
 const AboutMe = () => {

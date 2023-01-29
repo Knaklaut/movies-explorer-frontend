@@ -15,7 +15,7 @@
   }
 }
 
-@keyframes preloader-inside-blue {
+@keyframes preloader-inside-red {
   0% {
       -webkit-transform: scale(0, 0);
       -moz-transform: scale(0, 0);
@@ -61,7 +61,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #3456F3;
+  background: #2BE080;
   border-radius: 50px;
 }
 

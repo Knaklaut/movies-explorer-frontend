@@ -1,18 +1,73 @@
+import React, { useState, useEffect , useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import MoviesCard from '../MoviesCard/MoviesCard';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+
 import './MoviesCardList.css';
 
 const MoviesCardList = ({ movies }) => {
-  const handleButtonClick = () => {};
+  const { savedMovies } = useContext(CurrentUserContext);
+  const { pathname } = useLocation();
+  const [addButton, setAddButton] = useState(false);
+  const [movieNumber, setMovieNumber] = useState(0);
+  const [device, setDevice] = useState(window.innerWidth);
+  const handleSetDevice = () => setDevice(window.innerWidth);
+
+  useEffect(() => {
+    if (pathname === '/movies' ) {
+      movies.length > movieNumber ? setAddButton(true) : setAddButton(false);
+    } else {
+      setAddButton(false);
+    }
+  }, [pathname, movies.length, movieNumber]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleSetDevice);
+    return () => { window.removeEventListener('resize', handleSetDevice); };
+  }, []);
+
+  useEffect(() => {
+    if (device <= 768) {
+      setMovieNumber(5);
+    } else if (device <= 1280) {
+      setMovieNumber(8);
+    } else {
+      setMovieNumber(12);
+    }
+  }, [device, movies.length]);
+
+  function checkSavedMovie(movie) {
+    const checkedMovie = savedMovies.find((film) => film.movieId === movie.movieId);
+    return checkedMovie ? { isSaved: true, id: checkedMovie._id } : { isSaved: false, id: '' }
+  };
+
+  function showMovieCards() {
+    if (pathname === '/movies') {
+      return movies.length ? movies.slice(0, movieNumber).map((movie) => (
+        <MoviesCard movie={movie} key={movie.movieId} updateCurrentState={checkSavedMovie(movie)} />
+      )) : '';
+    } else {
+      return movies.length ? movies.map((movie) => (
+        <MoviesCard movie={movie} key={movie.movieId} updateCurrentState={{ isSaved: true, id: movie._id }} />
+      )) : '';
+    }
+  };
+
+  function handleButtonClick() {
+    setMovieNumber((current) => {
+      if (device <= 1280) {
+        return current + 2;
+      }
+      return current + 3;
+    })
+  };
 
   return (
     <section className="cards-list">
       <div className="cards-list__content">
-        <ul className="cards-list__items">
-          {movies.map((movie) => (
-            <MoviesCard key={movie.id} movie={movie} />
-          ))}
-        </ul>
-        <button onClick={handleButtonClick} className="cards-list__button" type="button">Ещё</button>
+        <ul className="cards-list__items">{showMovieCards()}</ul>
+        {addButton ? <button onClick={handleButtonClick} className="cards-list__button" type='button'>Ещё</button> : ''}
       </div>
     </section>
   )

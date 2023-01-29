@@ -1,27 +1,24 @@
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 
-import './Header.css';
-
-import logo from '../../images/logo.svg';
+import Menu from '../Menu/Menu';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab'
-import Menu from '../Menu/Menu';
 
-const Header = () => {
+import './Header.css';
+import logo from '../../images/logo.svg';
+
+const Header = ({ loggedIn, isOpen, setIsOpen, handleOverlayClick }) => {
   const { pathname } = useLocation();
-  const [loggedIn] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const classNames = cn("header", { "header__landing" : pathname === '/', });
 
   return (
     <header className={classNames}>
       <div className="header__container">
-        <Menu loggedIn={loggedIn} isMenuOpen={isOpen} setIsMenuOpen={setIsOpen} />
-        <Link to='/'><img src={logo} alt='Логотип Movies Explorer' className="header__logo" /></Link>
-        { loggedIn ? <Navigation isMenuOpen={isOpen} setIsMenuOpen={setIsOpen} /> : <NavTab></NavTab> }
+        <Menu loggedIn={loggedIn} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Link to='/' className={ loggedIn ? "" : "header__logo" }><img src={logo} alt='Логотип Movies Explorer' /></Link>
+        { loggedIn ? <Navigation isOpen={isOpen} setIsOpen={setIsOpen} handleOverlayClick={handleOverlayClick} /> : <NavTab /> }
       </div>
     </header>
   )

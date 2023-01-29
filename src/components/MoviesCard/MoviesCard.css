@@ -45,7 +45,7 @@
   width: 30px;
   height: 30px;
   display: block;
-  background-image: url(../../images/ico-heart.svg);
+  background-image: url('../../images/like-button.svg');
   background-color: transparent;
   background-size: cover;
   background-position: center;
@@ -55,11 +55,15 @@
 }
   
 .movie-card__button_save {
-  background-image: url('../../images/ico-heart-active.svg');
+  background-image: url('../../images/like-button-selected.svg');
 }
   
 .movie-card__button_delete {
-  background-image: url('../../images/ico-cross.svg');
+  background-image: url('../../images/delete-movie.svg');
+}
+
+.movie-card__button_disabled {
+  cursor: default;
 }
   
 .movie-card__button:hover {

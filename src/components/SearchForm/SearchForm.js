@@ -1,30 +1,38 @@
-import {useState} from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { useFormWithValidation } from '../../utils/utils';
+import ShortMoviesFilter from '../ShortMoviesFilter/ShortMoviesFilter';
+
 import './SearchForm.css';
 
-const SearchForm = ({ handleSendQuery }) => {
-  const [query, setQuery] = useState('');
-  const [isShortMovie, setIsShortMovie] = useState(false);
-  const handleInputQuery = (evt) => setQuery(evt.target.value);
-  const onSubmit = (evt) => {
+const SearchForm = ({ handleTick, handleSubmitSearch, showError, isLoading }) => {
+  const { pathname } = useLocation();
+  const { inputData, setInputData, isValid, setIsValid, handleUpdateData } = useFormWithValidation();
+
+  useEffect(() => {
+    if (pathname === '/movies') {
+      const storedQuery = localStorage.getItem('storedQuery');
+      storedQuery && setInputData({ query: storedQuery });
+      setIsValid(true);
+    } else {
+      setInputData({query: ''});
+    }
+  }, [pathname]);
+
+  function handleSubmitData(evt) {
     evt.preventDefault();
-    handleSendQuery(query);
+    handleSubmitSearch(inputData.query);
   };
 
   return (
     <section className="search-form">
       <div className="search-form__container">
-        <form onSubmit={onSubmit} className="search-form__form" name='search-form' action='' method=''>
-          <input onChange={handleInputQuery} className="search-form__input" value={query} name='search' type='text' placeholder='Фильм' required />
-          <button className="search-form__button" type='submit' />
+        <form onSubmit={handleSubmitData} className="search-form__form" name='search-form' noValidate>
+          <input onChange={handleUpdateData} value={inputData.query} disabled={isLoading} className="search-form__input" name='query' id='query' type='text' placeholder='Фильм' minLength='1' maxLength='50' required />
+          <button className="search-form__button" type='submit' disabled={isLoading} />
         </form>
-        <div isShortMovie={isShortMovie} setIsShortMovie={setIsShortMovie} className="filter">
-          <label className="filter__container">
-            <input onClick={() => setIsShortMovie(!isShortMovie)} checked={isShortMovie} className="filter__checkbox" type='checkbox' />
-            <span className="filter__switcher" />
-            <span className="filter__caption">Короткометражки</span>
-          </label>
-        </div>
-        <div className="search-form__divider"></div>
+        <ShortMoviesFilter handleChangeFilter={handleTick} />
       </div>
     </section>
   )

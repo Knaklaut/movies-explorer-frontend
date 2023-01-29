@@ -2,12 +2,13 @@
   padding: 80px 0 10px;
   box-sizing: border-box;
 }
-  
+
 .search-form__container {
   width: calc(100% - 28px);
+  max-width: 1280px;
   margin: 0 auto;
 }
-  
+
 .search-form__form {
   width: 100%;
   box-sizing: border-box;
@@ -15,7 +16,7 @@
   position: relative;
   align-items: center;
 }
-  
+
 .search-form__input {
   width: 100%;
   height: 46px;
@@ -29,14 +30,18 @@
   border: none;
   background-color: #f4f4f4;
 }
-  
+
+.search-form__input:focus {
+  outline: 1px solid #3456F3;
+}
+
 .search-form__input::placeholder {
   font-size: 11px;
   font-weight: 400;
   line-height: 1.55;
   color: #A0A0A0;
 }
-  
+
 .search-form__button {
   min-width: 80px;
   height: 34px;
@@ -47,82 +52,30 @@
   background-color: #3456F3;
   border: none;
   border-radius: 48px;
-  background-image: url(../../images/ico-find.svg);
+  background-image: url(../../images/search-movies.svg);
   background-repeat: no-repeat;
   background-size: 22px;
   background-position: center;
   transition: opacity .3s ease-in-out;
 }
-  
+
 .search-form__button:hover {
   opacity: .7;
   cursor: pointer;
 }
 
-.filter {
-  width: 100%;
-  margin-top: 42px;
-  text-align: center;
-}
-  
-.filter__container {
-  display: inline-block;
-  position: relative;
-}
-  
-.filter__checkbox {
-  display: none;
-}
-  
-.filter__switcher {
-  width: 36px;
-  height: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border-radius: 20px;
-  background-color: #2BE080;
-  transition: opacity .3s ease-in-out;
+.search__submit-btn_disabled {
+  filter: grayscale(100%);
+  opacity: 0.3;
+  cursor: wait;
 }
 
-.filter__switcher:hover {
-  opacity: .7;
-  cursor: pointer;
-}
-  
-.filter__switcher:before {
-  position: absolute;
-  content: '';
-  top: 1.5px;
-  left: 1.5px;
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: opacity .3s ease-in-out;
-}
-  
-.filter__caption {
-  margin-left: 49px;
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 1.64;
-}
-  
-.filter__checkbox:checked + .filter__switcher:before {
-  background-color: #fff;
-  transform: translateX(17px);
+.search__submit-btn_disabled:hover {
+  filter: grayscale(100%);
+  opacity: 0.3;
+  cursor: wait;
 }
 
-.search-form__divider {
-  margin-top: 50px;
-  width: 100%;
-  height: 1px;
-  background-color: #E8E8E8;
-}
-  
 @media screen and (min-width: 768px) {
   .search-form__container {
     width: calc(100% - 60px);
@@ -149,4 +102,3 @@
     width: calc(100% - 140px);
   }
 }
-  
