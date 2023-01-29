@@ -48,5 +48,6 @@
 * `MoviesApi` - содержит запросы для получения фильмов с сервиса beatfilm-movies.
 
 ## Ссылки
-Ссылка на макет: https://disk.yandex.ru/d/AqIzBrYfTXIcjA
-Ссылка на pull request GitHub: https://github.com/Knaklaut/movies-explorer-frontend/pull/2
+* Ссылка на макет: https://disk.yandex.ru/d/AqIzBrYfTXIcjA
+* Ссылка на pull request GitHub: https://github.com/Knaklaut/movies-explorer-frontend/pull/2
+* Ссылка на деплой: http://knaklaut.nomoredomains.icu
