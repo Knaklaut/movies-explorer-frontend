@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { movieSpecifics, screenWidth } from '../../utils/constants';
 
 import './MoviesCardList.css';
 
@@ -28,12 +29,12 @@ const MoviesCardList = ({ movies }) => {
   }, []);
 
   useEffect(() => {
-    if (device <= 768) {
-      setMovieNumber(5);
-    } else if (device <= 1280) {
-      setMovieNumber(8);
+    if (device <= screenWidth.tablet) {
+      setMovieNumber(movieSpecifics.moviesShownMobile);
+    } else if (device <= screenWidth.desktop) {
+      setMovieNumber(movieSpecifics.moviesShownTablet);
     } else {
-      setMovieNumber(12);
+      setMovieNumber(movieSpecifics.moviesShownDesktop);
     }
   }, [device, movies.length]);
 
@@ -56,10 +57,10 @@ const MoviesCardList = ({ movies }) => {
 
   function handleButtonClick() {
     setMovieNumber((current) => {
-      if (device <= 1280) {
-        return current + 2;
+      if (device <= screenWidth.desktop) {
+        return current + movieSpecifics.moviesAddedMobileOrTablet;
       }
-      return current + 3;
+      return current + movieSpecifics.moviesAddedDesktop;
     })
   };
 

@@ -7,8 +7,8 @@ import './FormTemplate.css';
 import logo from '../../images/logo.svg';
 
 const FormTemplate = (props) => {
-  const { children, onSubmit, formTitle, greeting, isValid, isLoading, buttonCaption, text, linkCaption, link } = props;
-  const classNames = cn("form__button", { "form__button_disabled": !isValid });
+  const { children, onSubmit, formTitle, greeting, isValid, isLoading, text, buttonCaption, link, linkCaption } = props;
+  const classNames = cn("form__button", { "form__button_disabled": !isValid || isLoading });
 
   return (
     <section className="form">
@@ -21,7 +21,7 @@ const FormTemplate = (props) => {
       <form onSubmit={onSubmit} className="form__body" name={`form-${formTitle}`}>
         {children}
         {isLoading ? <Preloader /> : ''}
-        <button className={classNames} disabled={!isValid} type='submit'>{buttonCaption}</button>
+        <button className={classNames} disabled={!isValid || isLoading} type='submit'>{buttonCaption}</button>
       </form>
       <p className="form__text">{text}&nbsp;<Link to={`/${link}`} className="form__link">{linkCaption}</Link></p>
     </section>

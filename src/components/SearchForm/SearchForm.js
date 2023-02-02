@@ -8,28 +8,28 @@ import './SearchForm.css';
 
 const SearchForm = ({ handleTick, handleSubmitSearch, showError, isLoading }) => {
   const { pathname } = useLocation();
-  const { inputData, setInputData, isValid, setIsValid, handleUpdateData } = useFormWithValidation();
+  const { values, setValues, isValid, setIsValid, handleChange } = useFormWithValidation();
 
   useEffect(() => {
     if (pathname === '/movies') {
       const storedQuery = localStorage.getItem('storedQuery');
-      storedQuery && setInputData({ query: storedQuery });
+      storedQuery && setValues({ query: storedQuery });
       setIsValid(true);
     } else {
-      setInputData({query: ''});
+      setValues({query: ''});
     }
   }, [pathname]);
 
   function handleSubmitData(evt) {
     evt.preventDefault();
-    handleSubmitSearch(inputData.query);
+    handleSubmitSearch(values.query);
   };
 
   return (
     <section className="search-form">
       <div className="search-form__container">
         <form onSubmit={handleSubmitData} className="search-form__form" name='search-form' noValidate>
-          <input onChange={handleUpdateData} value={inputData.query} disabled={isLoading} className="search-form__input" name='query' id='query' type='text' placeholder='Фильм' minLength='1' maxLength='50' required />
+          <input onChange={handleChange} value={values.query} disabled={isLoading} className="search-form__input" name='query' id='query' type='text' placeholder='Фильм' minLength='1' maxLength='50' required />
           <button className="search-form__button" type='submit' disabled={isLoading} />
         </form>
         <ShortMoviesFilter handleChangeFilter={handleTick} />

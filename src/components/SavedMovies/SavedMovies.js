@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { userNotification } from '../../utils/constants';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
@@ -26,15 +27,15 @@ const SavedMovies = () => {
 
   function getFilteredMovies(query, isShortMovie) {
     const filteredMovies = filterMovies(savedMovies, query, isShortMovie);
-    filteredMovies.length === 0 ? setErrorMessage('По вашему запросу ничего не найдено.') : setErrorMessage('');
-    !savedMovies.length ? setErrorMessage('Сохранённые фильмы отсутствуют.') : setErrorMessage('');
+    filteredMovies.length === 0 ? setErrorMessage(userNotification.noMoviesFoundNotice) : setErrorMessage('');
+    !savedMovies.length ? setErrorMessage(userNotification.noSavedMoviesNotice) : setErrorMessage('');
     setMovies(filteredMovies);
   };
 
   useEffect(() => {
     setMovies(savedMovies);
     getFilteredMovies(searchParams.query, searchParams.isShortMovie);
-    !savedMovies.length ? setErrorMessage('Сохранённые фильмы отсутствуют.') : setErrorMessage('');
+    !savedMovies.length ? setErrorMessage(userNotification.noSavedMoviesNotice) : setErrorMessage('');
   }, [savedMovies]);
 
   function handleTick(isActivated) {
@@ -49,7 +50,7 @@ const SavedMovies = () => {
 
   function showMovies() {
     if (errorMessage.length) {
-      return console.log({ errorMessage });
+      return <p className='cards-list__message'>{errorMessage}</p>;
     }
     return (
       <MoviesCardList movies={movies} />

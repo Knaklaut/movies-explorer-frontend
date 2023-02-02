@@ -8,7 +8,7 @@ import NavTab from '../NavTab/NavTab'
 import './Header.css';
 import logo from '../../images/logo.svg';
 
-const Header = ({ loggedIn, isOpen, setIsOpen, handleOverlayClick }) => {
+const Header = ({ loggedIn, isMenuOpen, setIsMenuOpen, handleOverlayClick }) => {
   const { pathname } = useLocation();
 
   const classNames = cn("header", { "header__landing" : pathname === '/', });
@@ -16,9 +16,9 @@ const Header = ({ loggedIn, isOpen, setIsOpen, handleOverlayClick }) => {
   return (
     <header className={classNames}>
       <div className="header__container">
-        <Menu loggedIn={loggedIn} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Menu loggedIn={loggedIn} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Link to='/' className={ loggedIn ? "" : "header__logo" }><img src={logo} alt='Логотип Movies Explorer' /></Link>
-        { loggedIn ? <Navigation isOpen={isOpen} setIsOpen={setIsOpen} handleOverlayClick={handleOverlayClick} /> : <NavTab /> }
+        { loggedIn ? <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} handleOverlayClick={handleOverlayClick} /> : <NavTab /> }
       </div>
     </header>
   )

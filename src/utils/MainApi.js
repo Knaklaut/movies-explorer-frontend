@@ -47,13 +47,13 @@ class MainApi {
     }).then(this._checkServerRes);
   };
 
-  getUserData() {
+  getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._checkServerRes);
   }
 
-  updateUserData(data) {
+  changeUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,

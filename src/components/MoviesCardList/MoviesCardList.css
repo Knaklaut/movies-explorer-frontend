@@ -43,6 +43,16 @@
   cursor: pointer;
 }
 
+.cards-list__message {
+  margin: 0;
+  padding: 40px 0 80px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  color: #EE3465;
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   .cards-list {
     padding: 70px 0 80px;

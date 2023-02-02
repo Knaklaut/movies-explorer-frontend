@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import MoviesApi from '../../utils/MoviesApi';
+import { userNotification, movieRegExp, movieSpecifics } from '../../utils/constants';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -12,7 +13,6 @@ const Movies = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const baseStorage = JSON.parse(localStorage.getItem('baseStorage')) || [];
   const [isLoading, setIsLoading] = useState(false);
-  const regExp = /(https?:\/\/)(www\.)?([a-zA-Z0-9-]{0,63}\.)([a-zA-Z]{2,4})(\/[\w\-._~:/?#[\]@!$&'()*+,;=]#?)?/;
 
   useEffect(() => {
     const storedQuery = localStorage.getItem('storedQuery') || '';
@@ -32,7 +32,7 @@ const Movies = () => {
         return (nameRu.match(input)) || (nameEn && nameEn.match(input));
       });
     if (isShortMovie) {
-      return searchResults.filter((movie) => movie.duration <= 40);
+      return searchResults.filter((movie) => movie.duration <= movieSpecifics.shortMovieMaxDuration);
     }
     return searchResults;
   };
@@ -51,13 +51,13 @@ const Movies = () => {
           nameRU: movie.nameRU,
           nameEN: movie.nameEN,
         }))
-      .map((movie) => (regExp.test(movie.trailerLink) ? movie : { ...movie, trailerLink: movie.image }));
+      .map((movie) => (movieRegExp.test(movie.trailerLink) ? movie : { ...movie, trailerLink: movie.image }));
   };
 
   function arrangeFilteredMovies(movies) {
     setSearchResults(movies);
     localStorage.setItem('storedSearch', JSON.stringify(movies));
-    movies.length === 0 ? setErrorMessage('Ничего не найдено.') : setErrorMessage('');
+    movies.length === 0 ? setErrorMessage(userNotification.noMoviesFoundNotice) : setErrorMessage('');
   };
 
   function getFilteredMovies(query, isShortMovie) {
@@ -72,7 +72,7 @@ const Movies = () => {
         })
         .catch((err) => {
           console.log(err);
-          setErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+          setErrorMessage(userNotification.errorNotice);
         })
         .finally(() => setIsLoading(false));
     } else {
@@ -89,7 +89,7 @@ const Movies = () => {
 
   function showMovies() {
     if (errorMessage.length) {
-      return <p className='cards__search-message'>{errorMessage}</p>;
+      return <p className='cards-list__message'>{errorMessage}</p>;
     }
     return (<MoviesCardList movies={searchResults} />)
   };
