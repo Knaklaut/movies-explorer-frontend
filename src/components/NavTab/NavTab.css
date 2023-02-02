@@ -1,0 +1,54 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+  
+.nav__register,
+.nav__login {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: opacity .3s ease-in-out;
+}
+  
+.nav__register:hover,
+.nav__login:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+  
+.nav__register {
+    padding: 5px 0;
+    color: #000;
+    background-color: transparent;
+}
+  
+.nav__login {
+    padding: 5px 12px;
+    color: #FFF;
+    background-color: #3456F3;
+    border-radius: 3px;
+}
+
+@media screen and (min-width: 768px) {
+    .nav {
+        gap: 30px;
+    }
+
+    .nav__register,
+    .nav__login {
+        font-size: 12px;
+        line-height: 1.33;
+    }
+
+    .nav__register {
+        padding: 8px 0;
+    }
+
+    .nav__login {
+        padding: 8px 20px;
+    }
+}

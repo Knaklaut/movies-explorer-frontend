@@ -1,0 +1,36 @@
+.header {
+  min-height: 74px;
+  padding: 18px 0;
+  box-sizing: border-box;
+  position: relative;
+}
+  
+.header__landing {
+  background-color: #DDDEE3;
+}
+  
+.header__logo {
+  margin-right: auto;
+}
+  
+.header__container {
+  width: calc(100% - 28px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+  
+@media screen and (min-width: 768px) {
+  .header__container {
+    width: calc(100% - 60px);
+  }
+}
+  
+@media screen and (min-width: 1280px) {
+  .header__container {
+    width: calc(100% - 140px);
+  }
+}
+  
